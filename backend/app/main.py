@@ -6,6 +6,13 @@ from .db import get_session, upsert_listing, Listing
 from .scrapers import fetch_craigslist
 
 app = FastAPI(title="Rental Aggregator Backend")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # or set to your Vercel domain later
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class SearchIn(BaseModel):
     location: str = "sfbay"
